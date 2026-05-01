@@ -1,0 +1,884 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Code Hunter | من نحن</title>
+
+  <style>
+    :root {
+      --blue: #0b4f73;
+      --deep-blue: #062f49;
+      --green: #2f7d4f;
+      --purple: #4b245f;
+      --silver: #d9dde3;
+      --gray: #68727d;
+      --dark: #10202e;
+      --white: #ffffff;
+      --soft-bg: #f5fbff;
+      --shadow: 0 22px 55px rgba(6, 47, 73, 0.16);
+      --radius: 28px;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Tahoma", "Arial", sans-serif;
+    }
+
+    body {
+      min-height: 100vh;
+      background:
+        radial-gradient(circle at 8% 12%, rgba(75, 36, 95, 0.12), transparent 28%),
+        radial-gradient(circle at 90% 8%, rgba(47, 125, 79, 0.16), transparent 30%),
+        linear-gradient(135deg, #ffffff 0%, #eef8fb 48%, #ffffff 100%);
+      color: var(--dark);
+      overflow-x: hidden;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .container {
+      width: min(1180px, 92%);
+      margin: auto;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 999;
+      background: rgba(255, 255, 255, 0.82);
+      backdrop-filter: blur(18px);
+      border-bottom: 1px solid rgba(6, 47, 73, 0.08);
+    }
+
+    .navbar {
+      min-height: 84px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 25px;
+    }
+
+    .logo-area {
+      display: flex;
+      align-items: center;
+      gap: 13px;
+    }
+
+    .logo-area img {
+      width: 66px;
+      height: 66px;
+      object-fit: contain;
+      filter: drop-shadow(0 10px 18px rgba(6, 47, 73, 0.18));
+    }
+
+    .logo-text h1 {
+      color: var(--blue);
+      font-size: 23px;
+      letter-spacing: 0.5px;
+      line-height: 1.1;
+    }
+
+    .logo-text p {
+      color: var(--gray);
+      font-size: 12px;
+      margin-top: 6px;
+      font-weight: 700;
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    nav a {
+      padding: 10px 14px;
+      border-radius: 999px;
+      color: var(--deep-blue);
+      font-size: 14px;
+      font-weight: 800;
+      transition: 0.3s ease;
+    }
+
+    nav a:hover {
+      background: rgba(11, 79, 115, 0.09);
+      color: var(--green);
+    }
+
+    .nav-main {
+      background: linear-gradient(135deg, var(--blue), var(--green));
+      color: var(--white) !important;
+      box-shadow: 0 12px 28px rgba(11, 79, 115, 0.23);
+    }
+
+    .hero {
+      padding: 86px 0 54px;
+      position: relative;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      width: 260px;
+      height: 260px;
+      border-radius: 50%;
+      background: rgba(47, 125, 79, 0.11);
+      top: 80px;
+      right: -95px;
+      z-index: -1;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      width: 220px;
+      height: 220px;
+      border-radius: 50%;
+      background: rgba(75, 36, 95, 0.09);
+      bottom: 30px;
+      left: -90px;
+      z-index: -1;
+    }
+
+    .hero-card {
+      min-height: 390px;
+      border-radius: 42px;
+      background:
+        linear-gradient(135deg, rgba(255,255,255,0.92), rgba(245,251,255,0.82));
+      border: 1px solid rgba(11, 79, 115, 0.12);
+      box-shadow: var(--shadow);
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 38px;
+      align-items: center;
+      padding: 44px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-card::before {
+      content: "";
+      position: absolute;
+      width: 420px;
+      height: 420px;
+      border-radius: 50%;
+      background: conic-gradient(
+        from 90deg,
+        rgba(11, 79, 115, 0.15),
+        rgba(47, 125, 79, 0.13),
+        rgba(75, 36, 95, 0.12),
+        rgba(11, 79, 115, 0.15)
+      );
+      left: -160px;
+      top: -130px;
+      animation: spin 16s linear infinite;
+    }
+
+    .hero-text {
+      position: relative;
+      z-index: 2;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: rgba(255, 255, 255, 0.82);
+      border: 1px solid rgba(11, 79, 115, 0.13);
+      color: var(--blue);
+      padding: 10px 18px;
+      border-radius: 999px;
+      font-weight: 900;
+      font-size: 14px;
+      box-shadow: 0 12px 30px rgba(6, 47, 73, 0.07);
+      margin-bottom: 22px;
+    }
+
+    .badge span {
+      width: 10px;
+      height: 10px;
+      background: linear-gradient(135deg, var(--green), var(--blue));
+      border-radius: 50%;
+      box-shadow: 0 0 0 7px rgba(47, 125, 79, 0.13);
+    }
+
+    .hero-text h2 {
+      font-size: clamp(36px, 5vw, 62px);
+      color: var(--deep-blue);
+      line-height: 1.15;
+      margin-bottom: 18px;
+      font-weight: 900;
+    }
+
+    .hero-text h2 strong {
+      color: transparent;
+      background: linear-gradient(135deg, var(--blue), var(--green), var(--purple));
+      -webkit-background-clip: text;
+      background-clip: text;
+    }
+
+    .hero-text p {
+      font-size: 17px;
+      color: #445464;
+      line-height: 2;
+      max-width: 640px;
+    }
+
+    .hero-logo {
+      position: relative;
+      z-index: 2;
+      display: grid;
+      place-items: center;
+    }
+
+    .hero-logo-box {
+      width: min(330px, 100%);
+      min-height: 330px;
+      border-radius: 36px;
+      background: rgba(255, 255, 255, 0.86);
+      border: 1px solid rgba(11, 79, 115, 0.10);
+      box-shadow: 0 18px 45px rgba(6, 47, 73, 0.11);
+      display: grid;
+      place-items: center;
+      padding: 28px;
+    }
+
+    .hero-logo-box img {
+      width: 100%;
+      object-fit: contain;
+      filter: drop-shadow(0 20px 20px rgba(6, 47, 73, 0.13));
+      animation: float 4s ease-in-out infinite;
+    }
+
+    .section {
+      padding: 54px 0;
+    }
+
+    .section-title {
+      text-align: center;
+      max-width: 780px;
+      margin: 0 auto 36px;
+    }
+
+    .section-title small {
+      display: inline-block;
+      color: var(--green);
+      font-size: 14px;
+      font-weight: 900;
+      margin-bottom: 10px;
+    }
+
+    .section-title h3 {
+      color: var(--deep-blue);
+      font-size: clamp(28px, 4vw, 42px);
+      margin-bottom: 14px;
+      line-height: 1.35;
+    }
+
+    .section-title p {
+      color: #566575;
+      line-height: 1.9;
+      font-size: 16px;
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      align-items: stretch;
+    }
+
+    .info-card {
+      background: rgba(255, 255, 255, 0.84);
+      border: 1px solid rgba(11, 79, 115, 0.09);
+      border-radius: var(--radius);
+      box-shadow: 0 18px 45px rgba(6, 47, 73, 0.08);
+      padding: 30px;
+      position: relative;
+      overflow: hidden;
+      transition: 0.3s ease;
+    }
+
+    .info-card:hover {
+      transform: translateY(-7px);
+      box-shadow: 0 28px 60px rgba(6, 47, 73, 0.13);
+    }
+
+    .info-card::before {
+      content: "";
+      position: absolute;
+      width: 100px;
+      height: 100px;
+      border-radius: 30px;
+      top: -32px;
+      left: -32px;
+      transform: rotate(20deg);
+      background: linear-gradient(135deg, rgba(11, 79, 115, 0.12), rgba(47, 125, 79, 0.10));
+    }
+
+    .info-card h4 {
+      color: var(--deep-blue);
+      font-size: 23px;
+      margin-bottom: 14px;
+      position: relative;
+    }
+
+    .info-card p {
+      color: #586673;
+      line-height: 2;
+      font-size: 15.5px;
+      position: relative;
+    }
+
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 18px;
+    }
+
+    .member {
+      background: rgba(255, 255, 255, 0.86);
+      border: 1px solid rgba(11, 79, 115, 0.09);
+      border-radius: 26px;
+      box-shadow: 0 18px 45px rgba(6, 47, 73, 0.08);
+      padding: 24px 18px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      transition: 0.3s ease;
+    }
+
+    .member:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 28px 60px rgba(6, 47, 73, 0.14);
+    }
+
+    .member::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      height: 7px;
+      background: linear-gradient(90deg, var(--blue), var(--green), var(--purple));
+    }
+
+    .avatar {
+      width: 64px;
+      height: 64px;
+      border-radius: 22px;
+      margin: 8px auto 16px;
+      display: grid;
+      place-items: center;
+      color: var(--white);
+      font-weight: 900;
+      font-size: 22px;
+      background: linear-gradient(135deg, var(--blue), var(--green));
+      box-shadow: 0 16px 35px rgba(11, 79, 115, 0.22);
+    }
+
+    .member h4 {
+      color: var(--deep-blue);
+      font-size: 17px;
+      line-height: 1.6;
+      margin-bottom: 8px;
+    }
+
+    .role {
+      display: inline-block;
+      padding: 7px 12px;
+      border-radius: 999px;
+      background: rgba(47, 125, 79, 0.10);
+      color: var(--green);
+      font-size: 12px;
+      font-weight: 900;
+      margin-bottom: 12px;
+    }
+
+    .member p {
+      color: #5a6875;
+      font-size: 13px;
+      line-height: 1.8;
+    }
+
+    .responsibility-box {
+      margin-top: 30px;
+      border-radius: 34px;
+      padding: 34px;
+      background:
+        linear-gradient(135deg, rgba(6, 47, 73, 0.97), rgba(11, 79, 115, 0.93)),
+        radial-gradient(circle at left, rgba(47, 125, 79, 0.5), transparent 45%);
+      color: var(--white);
+      box-shadow: 0 30px 70px rgba(6, 47, 73, 0.27);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .responsibility-box::before {
+      content: "";
+      position: absolute;
+      width: 260px;
+      height: 260px;
+      border: 34px solid rgba(255, 255, 255, 0.05);
+      border-radius: 50%;
+      top: -90px;
+      left: -80px;
+    }
+
+    .responsibility-box h3 {
+      position: relative;
+      font-size: clamp(25px, 4vw, 38px);
+      margin-bottom: 22px;
+    }
+
+    .role-list {
+      position: relative;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+    }
+
+    .role-item {
+      padding: 15px 18px;
+      border-radius: 18px;
+      background: rgba(255, 255, 255, 0.10);
+      border: 1px solid rgba(255, 255, 255, 0.13);
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+    }
+
+    .role-item b {
+      width: 34px;
+      height: 34px;
+      border-radius: 11px;
+      background: rgba(47, 125, 79, 0.95);
+      display: grid;
+      place-items: center;
+      flex-shrink: 0;
+    }
+
+    .role-item span {
+      color: rgba(255, 255, 255, 0.88);
+      line-height: 1.8;
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    footer {
+      margin-top: 70px;
+      background: #071f31;
+      color: var(--white);
+      position: relative;
+      overflow: hidden;
+    }
+
+    footer::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 95% 20%, rgba(47, 125, 79, 0.20), transparent 34%),
+        radial-gradient(circle at 5% 85%, rgba(75, 36, 95, 0.22), transparent 34%);
+    }
+
+    .footer-content {
+      width: min(1180px, 92%);
+      margin: auto;
+      padding: 36px 0 26px;
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 24px;
+      align-items: center;
+      position: relative;
+      z-index: 2;
+    }
+
+    .footer-logo {
+      width: 92px;
+      height: 92px;
+      object-fit: contain;
+      background: rgba(255, 255, 255, 0.07);
+      border: 1px solid rgba(255, 255, 255, 0.11);
+      border-radius: 22px;
+      padding: 8px;
+    }
+
+    .footer-info h4 {
+      font-size: 19px;
+      margin-bottom: 8px;
+      color: #ecfbff;
+    }
+
+    .footer-info p {
+      color: rgba(255, 255, 255, 0.72);
+      font-size: 14px;
+      margin-bottom: 14px;
+    }
+
+    .students {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .students span {
+      padding: 9px 13px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.11);
+      color: rgba(255, 255, 255, 0.88);
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .footer-bottom {
+      width: min(1180px, 92%);
+      margin: auto;
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      color: rgba(255, 255, 255, 0.62);
+      font-size: 13px;
+      padding: 17px 0 22px;
+      border-top: 1px solid rgba(255, 255, 255, 0.09);
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: 0.75s ease;
+    }
+
+    .reveal.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @keyframes spin {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    @keyframes float {
+      0%, 100% {
+        transform: translateY(0) scale(1);
+      }
+      50% {
+        transform: translateY(-13px) scale(1.02);
+      }
+    }
+
+    @media (max-width: 1080px) {
+      .team-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    @media (max-width: 980px) {
+      .navbar {
+        flex-direction: column;
+        padding: 16px 0;
+      }
+
+      .hero-card {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+
+      .hero-text p {
+        margin: auto;
+      }
+
+      .about-grid,
+      .role-list {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 680px) {
+      .logo-area img {
+        width: 58px;
+        height: 58px;
+      }
+
+      .logo-text h1 {
+        font-size: 20px;
+      }
+
+      nav a {
+        font-size: 12px;
+        padding: 9px 11px;
+      }
+
+      .hero {
+        padding-top: 50px;
+      }
+
+      .hero-card {
+        padding: 28px;
+        border-radius: 32px;
+      }
+
+      .hero-text h2 {
+        font-size: 38px;
+      }
+
+      .hero-logo-box {
+        min-height: 260px;
+      }
+
+      .team-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .responsibility-box {
+        padding: 26px;
+      }
+
+      .footer-content {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+
+      .footer-logo {
+        margin: auto;
+      }
+
+      .students {
+        justify-content: center;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <div class="container navbar">
+      <a href="index.html" class="logo-area">
+        <img src="websitelogo.jpg" alt="Code Hunter Logo">
+        <div class="logo-text">
+          <h1>Code Hunter</h1>
+          <p>نظام كشف الأخطاء البرمجية المبكر</p>
+        </div>
+      </a>
+
+      <nav>
+        <a href="index.html">الرئيسية</a>
+        <a href="about.html" class="nav-main">من نحن</a>
+        <a href="project.html">فكرة المشروع</a>
+        <a href="features.html">المميزات</a>
+        <a href="how-it-works.html">آلية العمل</a>
+        <a href="contact.html">تواصل معنا</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+
+    <section class="hero">
+      <div class="container">
+        <div class="hero-card reveal">
+          <div class="hero-text">
+            <div class="badge">
+              <span></span>
+              فريق Code Hunter
+            </div>
+
+            <h2>
+              فريق يعمل على فكرة
+              <strong>تقنية ذكية ومفيدة</strong>
+            </h2>
+
+            <p>
+              يضم فريق Code Hunter طالبات عملن على اختيار فكرة مشروع تهدف إلى مساعدة المبرمجين
+              وفرق اختبار البرمجيات في اكتشاف الأخطاء مبكرًا أثناء كتابة الكود. تم توزيع الأدوار
+              بين البحث، التدقيق، القيادة، التصميم، والتنظيم لضمان إنجاز المشروع بصورة مرتبة واحترافية.
+            </p>
+          </div>
+
+          <div class="hero-logo">
+            <div class="hero-logo-box">
+              <img src="websitelogo.jpg" alt="Code Hunter Logo">
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+
+        <div class="section-title reveal">
+          <small>نبذة عن المشروع</small>
+          <h3>من فكرة BugFree إلى Code Hunter</h3>
+          <p>
+            بدأ المشروع بعنوان مبدئي BugFree، ثم تم اعتماد الاسم النهائي Code Hunter ليعبر بشكل أقوى
+            عن فكرة البحث عن الأخطاء البرمجية واكتشافها قبل أن تسبب مشكلات في البرامج.
+          </p>
+        </div>
+
+        <div class="about-grid">
+          <div class="info-card reveal">
+            <h4>رسالة الفريق</h4>
+            <p>
+              يسعى الفريق إلى تقديم فكرة تقنية واضحة تساعد على تحسين جودة البرمجيات من خلال الكشف
+              المبكر عن الأخطاء. يعتمد المشروع على مفهوم أن اكتشاف الخطأ في بدايته يجعل عملية التصحيح
+              أسرع وأسهل، ويساعد على إنتاج برامج أكثر استقرارًا واحترافية.
+            </p>
+          </div>
+
+          <div class="info-card reveal">
+            <h4>سبب اختيار الفكرة</h4>
+            <p>
+              تم اختيار فكرة المشروع لأن الأخطاء البرمجية من أكثر المشكلات التي تواجه المبرمجين
+              وفرق تطوير البرامج. لذلك جاءت فكرة Code Hunter كحل يساعد على تقليل وقت التصحيح،
+              تحسين سير العمل، وخفض تكلفة الصيانة والإصلاح.
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+
+        <div class="section-title reveal">
+          <small>أعضاء الفريق</small>
+          <h3>طالبات مشروع Code Hunter</h3>
+          <p>
+            تم توزيع الأدوار داخل الفريق بطريقة منظمة، بحيث يكون لكل طالبة دور واضح ومسؤولية محددة
+            تساهم في نجاح المشروع وتكامله.
+          </p>
+        </div>
+
+        <div class="team-grid">
+          <div class="member reveal">
+            <div class="avatar">1</div>
+            <h4>جودي موفق حجازي</h4>
+            <span class="role">الباحثة</span>
+            <p>جمع المعلومات والتأكد من صحة البيانات المستخدمة في المشروع.</p>
+          </div>
+
+          <div class="member reveal">
+            <div class="avatar">2</div>
+            <h4>جوري موفق حجازي</h4>
+            <span class="role">المدققة</span>
+            <p>مراجعة المعلومات، تعديل الأخطاء، والتأكد من دقة المحتوى.</p>
+          </div>
+
+          <div class="member reveal">
+            <div class="avatar">3</div>
+            <h4>دانه ظافر الشهري</h4>
+            <span class="role">القائدة</span>
+            <p>توزيع المهام، جمع الآراء، واتخاذ القرارات النهائية للفريق.</p>
+          </div>
+
+          <div class="member reveal">
+            <div class="avatar">4</div>
+            <h4>شذى بندر الزهراني</h4>
+            <span class="role">المصممة</span>
+            <p>تصميم الشكل العام للمشروع وتحسين مظهره البصري.</p>
+          </div>
+
+          <div class="member reveal">
+            <div class="avatar">5</div>
+            <h4>لينا فهد السياري</h4>
+            <span class="role">المنظمة</span>
+            <p>إدراج وجمع البيانات، متابعة التعديل، وتنظيم الوقت.</p>
+          </div>
+        </div>
+
+        <div class="responsibility-box reveal">
+          <h3>توزيع المسؤوليات داخل الفريق</h3>
+
+          <div class="role-list">
+            <div class="role-item">
+              <b>1</b>
+              <span>البحث عن المعلومات المناسبة والتأكد من ارتباطها بفكرة المشروع.</span>
+            </div>
+
+            <div class="role-item">
+              <b>2</b>
+              <span>تدقيق المحتوى ومراجعة الأخطاء اللغوية والتنظيمية.</span>
+            </div>
+
+            <div class="role-item">
+              <b>3</b>
+              <span>قيادة الفريق وتوزيع المهام واتخاذ القرارات النهائية.</span>
+            </div>
+
+            <div class="role-item">
+              <b>4</b>
+              <span>تصميم الهوية العامة وترتيب العناصر بشكل واضح وجذاب.</span>
+            </div>
+
+            <div class="role-item">
+              <b>5</b>
+              <span>تنظيم البيانات وإدارة الوقت ومتابعة سير العمل داخل الفريق.</span>
+            </div>
+
+            <div class="role-item">
+              <b>6</b>
+              <span>التعاون بين جميع الأعضاء لإنجاز مشروع متكامل ومنظم.</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="footer-content">
+      <img src="schoollogo.jpg" alt="School Logo" class="footer-logo">
+
+      <div class="footer-info">
+        <h4>مدارس الأرقم الأهلية - بنات</h4>
+        <p>مشروع تخرج: Code Hunter | نظام كشف الأخطاء البرمجية المبكر</p>
+
+        <div class="students">
+          <span>جودي موفق حجازي</span>
+          <span>جوري موفق حجازي</span>
+          <span>دانه ظافر الشهري</span>
+          <span>شذى بندر الزهراني</span>
+          <span>لينا فهد السياري</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      بإشراف المعلمة: سمر القحطاني
+    </div>
+  </footer>
+
+  <script>
+    const revealItems = document.querySelectorAll(".reveal");
+
+    function revealOnScroll() {
+      revealItems.forEach((item) => {
+        const top = item.getBoundingClientRect().top;
+        const windowHeight = window.innerHeight;
+
+        if (top < windowHeight - 80) {
+          item.classList.add("show");
+        }
+      });
+    }
+
+    window.addEventListener("scroll", revealOnScroll);
+    window.addEventListener("load", revealOnScroll);
+  </script>
+
+</body>
+</html>

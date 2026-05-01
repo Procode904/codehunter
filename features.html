@@ -1,0 +1,914 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Code Hunter | المميزات</title>
+
+  <style>
+    :root {
+      --blue: #0b4f73;
+      --deep-blue: #062f49;
+      --green: #2f7d4f;
+      --purple: #4b245f;
+      --gray: #68727d;
+      --dark: #10202e;
+      --white: #ffffff;
+      --shadow: 0 22px 55px rgba(6, 47, 73, 0.16);
+      --radius: 28px;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Tahoma", "Arial", sans-serif;
+    }
+
+    body {
+      min-height: 100vh;
+      background:
+        radial-gradient(circle at 8% 12%, rgba(75, 36, 95, 0.12), transparent 28%),
+        radial-gradient(circle at 90% 8%, rgba(47, 125, 79, 0.16), transparent 30%),
+        linear-gradient(135deg, #ffffff 0%, #eef8fb 48%, #ffffff 100%);
+      color: var(--dark);
+      overflow-x: hidden;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .container {
+      width: min(1180px, 92%);
+      margin: auto;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 999;
+      background: rgba(255, 255, 255, 0.82);
+      backdrop-filter: blur(18px);
+      border-bottom: 1px solid rgba(6, 47, 73, 0.08);
+    }
+
+    .navbar {
+      min-height: 84px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 25px;
+    }
+
+    .logo-area {
+      display: flex;
+      align-items: center;
+      gap: 13px;
+    }
+
+    .logo-area img {
+      width: 66px;
+      height: 66px;
+      object-fit: contain;
+      filter: drop-shadow(0 10px 18px rgba(6, 47, 73, 0.18));
+    }
+
+    .logo-text h1 {
+      color: var(--blue);
+      font-size: 23px;
+      letter-spacing: 0.5px;
+      line-height: 1.1;
+    }
+
+    .logo-text p {
+      color: var(--gray);
+      font-size: 12px;
+      margin-top: 6px;
+      font-weight: 700;
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    nav a {
+      padding: 10px 14px;
+      border-radius: 999px;
+      color: var(--deep-blue);
+      font-size: 14px;
+      font-weight: 800;
+      transition: 0.3s ease;
+    }
+
+    nav a:hover {
+      background: rgba(11, 79, 115, 0.09);
+      color: var(--green);
+    }
+
+    .nav-main {
+      background: linear-gradient(135deg, var(--blue), var(--green));
+      color: var(--white) !important;
+      box-shadow: 0 12px 28px rgba(11, 79, 115, 0.23);
+    }
+
+    .hero {
+      padding: 86px 0 54px;
+      position: relative;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      width: 260px;
+      height: 260px;
+      border-radius: 50%;
+      background: rgba(47, 125, 79, 0.11);
+      top: 80px;
+      right: -95px;
+      z-index: -1;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      width: 220px;
+      height: 220px;
+      border-radius: 50%;
+      background: rgba(75, 36, 95, 0.09);
+      bottom: 30px;
+      left: -90px;
+      z-index: -1;
+    }
+
+    .hero-card {
+      min-height: 390px;
+      border-radius: 42px;
+      background: linear-gradient(135deg, rgba(255,255,255,0.92), rgba(245,251,255,0.82));
+      border: 1px solid rgba(11, 79, 115, 0.12);
+      box-shadow: var(--shadow);
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 38px;
+      align-items: center;
+      padding: 44px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-card::before {
+      content: "";
+      position: absolute;
+      width: 420px;
+      height: 420px;
+      border-radius: 50%;
+      background: conic-gradient(
+        from 90deg,
+        rgba(11, 79, 115, 0.15),
+        rgba(47, 125, 79, 0.13),
+        rgba(75, 36, 95, 0.12),
+        rgba(11, 79, 115, 0.15)
+      );
+      left: -160px;
+      top: -130px;
+      animation: spin 16s linear infinite;
+    }
+
+    .hero-text,
+    .feature-preview {
+      position: relative;
+      z-index: 2;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: rgba(255, 255, 255, 0.82);
+      border: 1px solid rgba(11, 79, 115, 0.13);
+      color: var(--blue);
+      padding: 10px 18px;
+      border-radius: 999px;
+      font-weight: 900;
+      font-size: 14px;
+      box-shadow: 0 12px 30px rgba(6, 47, 73, 0.07);
+      margin-bottom: 22px;
+    }
+
+    .badge span {
+      width: 10px;
+      height: 10px;
+      background: linear-gradient(135deg, var(--green), var(--blue));
+      border-radius: 50%;
+      box-shadow: 0 0 0 7px rgba(47, 125, 79, 0.13);
+    }
+
+    .hero-text h2 {
+      font-size: clamp(36px, 5vw, 62px);
+      color: var(--deep-blue);
+      line-height: 1.15;
+      margin-bottom: 18px;
+      font-weight: 900;
+    }
+
+    .hero-text h2 strong {
+      color: transparent;
+      background: linear-gradient(135deg, var(--blue), var(--green), var(--purple));
+      -webkit-background-clip: text;
+      background-clip: text;
+    }
+
+    .hero-text p {
+      font-size: 17px;
+      color: #445464;
+      line-height: 2;
+      max-width: 650px;
+    }
+
+    .feature-preview {
+      display: grid;
+      gap: 15px;
+    }
+
+    .preview-item {
+      padding: 18px;
+      border-radius: 22px;
+      background: rgba(255, 255, 255, 0.88);
+      border: 1px solid rgba(11, 79, 115, 0.10);
+      box-shadow: 0 18px 45px rgba(6, 47, 73, 0.09);
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      transition: 0.3s ease;
+    }
+
+    .preview-item:hover {
+      transform: translateX(-8px);
+    }
+
+    .preview-item b {
+      width: 44px;
+      height: 44px;
+      border-radius: 15px;
+      display: grid;
+      place-items: center;
+      color: var(--white);
+      background: linear-gradient(135deg, var(--blue), var(--green));
+      flex-shrink: 0;
+      box-shadow: 0 14px 30px rgba(11, 79, 115, 0.22);
+    }
+
+    .preview-item span {
+      color: var(--deep-blue);
+      font-size: 15px;
+      font-weight: 900;
+      line-height: 1.6;
+    }
+
+    .section {
+      padding: 54px 0;
+    }
+
+    .section-title {
+      text-align: center;
+      max-width: 780px;
+      margin: 0 auto 36px;
+    }
+
+    .section-title small {
+      display: inline-block;
+      color: var(--green);
+      font-size: 14px;
+      font-weight: 900;
+      margin-bottom: 10px;
+    }
+
+    .section-title h3 {
+      color: var(--deep-blue);
+      font-size: clamp(28px, 4vw, 42px);
+      margin-bottom: 14px;
+      line-height: 1.35;
+    }
+
+    .section-title p {
+      color: #566575;
+      line-height: 1.9;
+      font-size: 16px;
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+    }
+
+    .feature-card {
+      min-height: 250px;
+      background: rgba(255, 255, 255, 0.84);
+      border: 1px solid rgba(11, 79, 115, 0.09);
+      border-radius: var(--radius);
+      box-shadow: 0 18px 45px rgba(6, 47, 73, 0.08);
+      padding: 28px;
+      position: relative;
+      overflow: hidden;
+      transition: 0.3s ease;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 28px 60px rgba(6, 47, 73, 0.14);
+    }
+
+    .feature-card::before {
+      content: "";
+      position: absolute;
+      width: 95px;
+      height: 95px;
+      border-radius: 28px;
+      top: -28px;
+      left: -28px;
+      transform: rotate(20deg);
+      background: linear-gradient(135deg, rgba(11, 79, 115, 0.12), rgba(47, 125, 79, 0.10));
+    }
+
+    .icon-box {
+      width: 54px;
+      height: 54px;
+      border-radius: 18px;
+      background: linear-gradient(135deg, var(--blue), var(--green));
+      color: var(--white);
+      display: grid;
+      place-items: center;
+      font-weight: 900;
+      margin-bottom: 20px;
+      position: relative;
+      box-shadow: 0 16px 35px rgba(11, 79, 115, 0.22);
+    }
+
+    .feature-card h4 {
+      color: var(--deep-blue);
+      font-size: 21px;
+      margin-bottom: 12px;
+      position: relative;
+    }
+
+    .feature-card p {
+      color: #586673;
+      line-height: 1.9;
+      font-size: 15px;
+      position: relative;
+    }
+
+    .benefit-box {
+      margin-top: 34px;
+      padding: 36px;
+      border-radius: 36px;
+      background:
+        linear-gradient(135deg, rgba(6, 47, 73, 0.97), rgba(11, 79, 115, 0.93)),
+        radial-gradient(circle at left, rgba(47, 125, 79, 0.5), transparent 45%);
+      box-shadow: 0 30px 70px rgba(6, 47, 73, 0.27);
+      color: var(--white);
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 30px;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .benefit-box::before {
+      content: "";
+      position: absolute;
+      width: 260px;
+      height: 260px;
+      border: 34px solid rgba(255, 255, 255, 0.05);
+      border-radius: 50%;
+      top: -90px;
+      left: -80px;
+    }
+
+    .benefit-box h3 {
+      position: relative;
+      font-size: clamp(25px, 4vw, 38px);
+      margin-bottom: 16px;
+      line-height: 1.45;
+    }
+
+    .benefit-box p {
+      position: relative;
+      color: rgba(255, 255, 255, 0.84);
+      line-height: 2;
+    }
+
+    .benefit-list {
+      position: relative;
+      display: grid;
+      gap: 13px;
+    }
+
+    .benefit-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 13px;
+      padding: 15px 18px;
+      border-radius: 18px;
+      background: rgba(255, 255, 255, 0.10);
+      border: 1px solid rgba(255, 255, 255, 0.13);
+    }
+
+    .benefit-item b {
+      width: 34px;
+      height: 34px;
+      border-radius: 11px;
+      background: rgba(47, 125, 79, 0.95);
+      display: grid;
+      place-items: center;
+      flex-shrink: 0;
+    }
+
+    .benefit-item span {
+      color: rgba(255, 255, 255, 0.9);
+      line-height: 1.7;
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .target-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+    }
+
+    .target-card {
+      background: rgba(255, 255, 255, 0.84);
+      border: 1px solid rgba(11, 79, 115, 0.09);
+      border-radius: 26px;
+      box-shadow: 0 18px 45px rgba(6, 47, 73, 0.08);
+      padding: 26px;
+      transition: 0.3s ease;
+      text-align: center;
+    }
+
+    .target-card:hover {
+      transform: translateY(-7px);
+      box-shadow: 0 28px 60px rgba(6, 47, 73, 0.13);
+    }
+
+    .target-card .target-no {
+      width: 58px;
+      height: 58px;
+      border-radius: 20px;
+      margin: 0 auto 16px;
+      display: grid;
+      place-items: center;
+      color: var(--white);
+      font-weight: 900;
+      background: linear-gradient(135deg, var(--purple), var(--blue));
+      box-shadow: 0 16px 35px rgba(75, 36, 95, 0.22);
+    }
+
+    .target-card h4 {
+      color: var(--deep-blue);
+      font-size: 21px;
+      margin-bottom: 10px;
+    }
+
+    .target-card p {
+      color: #586673;
+      line-height: 1.9;
+      font-size: 15px;
+    }
+
+    footer {
+      margin-top: 70px;
+      background: #071f31;
+      color: var(--white);
+      position: relative;
+      overflow: hidden;
+    }
+
+    footer::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 95% 20%, rgba(47, 125, 79, 0.20), transparent 34%),
+        radial-gradient(circle at 5% 85%, rgba(75, 36, 95, 0.22), transparent 34%);
+    }
+
+    .footer-content {
+      width: min(1180px, 92%);
+      margin: auto;
+      padding: 36px 0 26px;
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 24px;
+      align-items: center;
+      position: relative;
+      z-index: 2;
+    }
+
+    .footer-logo {
+      width: 92px;
+      height: 92px;
+      object-fit: contain;
+      background: rgba(255, 255, 255, 0.07);
+      border: 1px solid rgba(255, 255, 255, 0.11);
+      border-radius: 22px;
+      padding: 8px;
+    }
+
+    .footer-info h4 {
+      font-size: 19px;
+      margin-bottom: 8px;
+      color: #ecfbff;
+    }
+
+    .footer-info p {
+      color: rgba(255, 255, 255, 0.72);
+      font-size: 14px;
+      margin-bottom: 14px;
+    }
+
+    .students {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .students span {
+      padding: 9px 13px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.11);
+      color: rgba(255, 255, 255, 0.88);
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .footer-bottom {
+      width: min(1180px, 92%);
+      margin: auto;
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      color: rgba(255, 255, 255, 0.62);
+      font-size: 13px;
+      padding: 17px 0 22px;
+      border-top: 1px solid rgba(255, 255, 255, 0.09);
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: 0.75s ease;
+    }
+
+    .reveal.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @keyframes spin {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    @media (max-width: 980px) {
+      .navbar {
+        flex-direction: column;
+        padding: 16px 0;
+      }
+
+      .hero-card,
+      .benefit-box {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+
+      .hero-text p {
+        margin: auto;
+      }
+
+      .features-grid,
+      .target-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (max-width: 680px) {
+      .logo-area img {
+        width: 58px;
+        height: 58px;
+      }
+
+      .logo-text h1 {
+        font-size: 20px;
+      }
+
+      nav a {
+        font-size: 12px;
+        padding: 9px 11px;
+      }
+
+      .hero {
+        padding-top: 50px;
+      }
+
+      .hero-card {
+        padding: 28px;
+        border-radius: 32px;
+      }
+
+      .hero-text h2 {
+        font-size: 38px;
+      }
+
+      .features-grid,
+      .target-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .benefit-box {
+        padding: 26px;
+      }
+
+      .footer-content {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+
+      .footer-logo {
+        margin: auto;
+      }
+
+      .students {
+        justify-content: center;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <div class="container navbar">
+      <a href="index.html" class="logo-area">
+        <img src="websitelogo.jpg" alt="Code Hunter Logo">
+        <div class="logo-text">
+          <h1>Code Hunter</h1>
+          <p>نظام كشف الأخطاء البرمجية المبكر</p>
+        </div>
+      </a>
+
+      <nav>
+        <a href="index.html">الرئيسية</a>
+        <a href="about.html">من نحن</a>
+        <a href="project.html">فكرة المشروع</a>
+        <a href="features.html" class="nav-main">المميزات</a>
+        <a href="how-it-works.html">آلية العمل</a>
+        <a href="contact.html">تواصل معنا</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+
+    <section class="hero">
+      <div class="container">
+        <div class="hero-card reveal">
+          <div class="hero-text">
+            <div class="badge">
+              <span></span>
+              مميزات المشروع
+            </div>
+
+            <h2>
+              مميزات تجعل
+              <strong>البرمجة أكثر دقة وتنظيمًا</strong>
+            </h2>
+
+            <p>
+              يقدم Code Hunter مجموعة من المميزات التي تساعد على تحسين عملية تطوير البرمجيات،
+              من خلال الكشف المبكر عن الأخطاء، تقليل وقت التصحيح، ورفع جودة الكود قبل الوصول
+              إلى مراحل التشغيل والاختبار النهائية.
+            </p>
+          </div>
+
+          <div class="feature-preview">
+            <div class="preview-item">
+              <b>01</b>
+              <span>كشف الأخطاء أثناء كتابة الكود</span>
+            </div>
+            <div class="preview-item">
+              <b>02</b>
+              <span>تقليل وقت التصحيح والمراجعة</span>
+            </div>
+            <div class="preview-item">
+              <b>03</b>
+              <span>تحسين جودة البرامج قبل التشغيل</span>
+            </div>
+            <div class="preview-item">
+              <b>04</b>
+              <span>دعم المبرمجين وفرق الاختبار</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+
+        <div class="section-title reveal">
+          <small>المميزات الأساسية</small>
+          <h3>ما الذي يميز Code Hunter؟</h3>
+          <p>
+            تعتمد قوة المشروع على فكرة بسيطة: كلما تم اكتشاف الخطأ مبكرًا، أصبح إصلاحه أسهل وأسرع
+            وأكثر فاعلية.
+          </p>
+        </div>
+
+        <div class="features-grid">
+          <div class="feature-card reveal">
+            <div class="icon-box">1</div>
+            <h4>الكشف المبكر عن الأخطاء</h4>
+            <p>
+              يساعد النظام على ملاحظة الأخطاء البرمجية في وقت مبكر أثناء كتابة الكود، قبل أن تتحول
+              إلى مشكلات أكبر داخل المشروع.
+            </p>
+          </div>
+
+          <div class="feature-card reveal">
+            <div class="icon-box">2</div>
+            <h4>تقليل وقت التصحيح</h4>
+            <p>
+              عندما يتم تحديد الخطأ مبكرًا، يصبح تصحيحه أسرع وأسهل، مما يوفر الوقت والجهد على
+              المبرمجين وفرق العمل.
+            </p>
+          </div>
+
+          <div class="feature-card reveal">
+            <div class="icon-box">3</div>
+            <h4>تحسين جودة الكود</h4>
+            <p>
+              يساعد Code Hunter في جعل الكود أكثر تنظيمًا واستقرارًا من خلال تقليل الأخطاء
+              المتكررة قبل مرحلة التنفيذ النهائي.
+            </p>
+          </div>
+
+          <div class="feature-card reveal">
+            <div class="icon-box">4</div>
+            <h4>دعم فرق اختبار البرمجيات</h4>
+            <p>
+              يساند فرق الاختبار في اكتشاف المشكلات مبكرًا، مما يجعل عملية مراجعة البرامج أكثر
+              سرعة ودقة ووضوحًا.
+            </p>
+          </div>
+
+          <div class="feature-card reveal">
+            <div class="icon-box">5</div>
+            <h4>خفض تكلفة الصيانة</h4>
+            <p>
+              تقليل الأخطاء في المراحل المبكرة يساعد على خفض تكلفة الإصلاح والصيانة، خاصة في
+              المشاريع البرمجية الكبيرة.
+            </p>
+          </div>
+
+          <div class="feature-card reveal">
+            <div class="icon-box">6</div>
+            <h4>واجهة سهلة وواضحة</h4>
+            <p>
+              تعتمد فكرة المشروع على تقديم التنبيهات والملاحظات بطريقة واضحة، حتى يستطيع المستخدم
+              فهم المشكلة والتعامل معها بسرعة.
+            </p>
+          </div>
+        </div>
+
+        <div class="benefit-box reveal">
+          <div>
+            <h3>أثر المميزات على عملية التطوير</h3>
+            <p>
+              لا تقتصر مميزات Code Hunter على اكتشاف الخطأ فقط، بل تمتد إلى تحسين طريقة العمل
+              داخل المشروع البرمجي، وتسهيل التعاون بين المبرمجين وفرق الاختبار، وتقليل المشكلات
+              التي قد تظهر في المراحل النهائية.
+            </p>
+          </div>
+
+          <div class="benefit-list">
+            <div class="benefit-item">
+              <b>1</b>
+              <span>تسريع عملية تطوير البرمجيات من خلال اكتشاف المشكلات مبكرًا.</span>
+            </div>
+
+            <div class="benefit-item">
+              <b>2</b>
+              <span>تقليل الجهد المطلوب في مراجعة وتصحيح الكود.</span>
+            </div>
+
+            <div class="benefit-item">
+              <b>3</b>
+              <span>رفع مستوى الثقة في جودة البرنامج قبل تشغيله أو تسليمه.</span>
+            </div>
+
+            <div class="benefit-item">
+              <b>4</b>
+              <span>مساعدة المستخدم على فهم الخطأ والتعامل معه بطريقة منظمة.</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+
+        <div class="section-title reveal">
+          <small>الفئات المستفيدة</small>
+          <h3>لمن صُممت هذه المميزات؟</h3>
+          <p>
+            صُممت مميزات المشروع لتخدم أكثر من فئة داخل مجال البرمجة وتطوير البرمجيات.
+          </p>
+        </div>
+
+        <div class="target-grid">
+          <div class="target-card reveal">
+            <div class="target-no">01</div>
+            <h4>المبرمجون</h4>
+            <p>
+              تساعدهم على اكتشاف الأخطاء أثناء كتابة الكود، مما يجعل عملهم أكثر سرعة ودقة.
+            </p>
+          </div>
+
+          <div class="target-card reveal">
+            <div class="target-no">02</div>
+            <h4>فرق اختبار البرمجيات</h4>
+            <p>
+              تسهّل عليهم معرفة الأخطاء المحتملة قبل الوصول إلى مرحلة الاختبار النهائي.
+            </p>
+          </div>
+
+          <div class="target-card reveal">
+            <div class="target-no">03</div>
+            <h4>شركات تطوير البرامج</h4>
+            <p>
+              تساعد الشركات على تحسين جودة منتجاتها وتقليل تكلفة الصيانة والإصلاح.
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="footer-content">
+      <img src="schoollogo.jpg" alt="School Logo" class="footer-logo">
+
+      <div class="footer-info">
+        <h4>مدارس الأرقم الأهلية - بنات</h4>
+        <p>مشروع تخرج: Code Hunter | نظام كشف الأخطاء البرمجية المبكر</p>
+
+        <div class="students">
+          <span>جودي موفق حجازي</span>
+          <span>جوري موفق حجازي</span>
+          <span>دانه ظافر الشهري</span>
+          <span>شذى بندر الزهراني</span>
+          <span>لينا فهد السياري</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      بإشراف المعلمة: سمر القحطاني
+    </div>
+  </footer>
+
+  <script>
+    const revealItems = document.querySelectorAll(".reveal");
+
+    function revealOnScroll() {
+      revealItems.forEach((item) => {
+        const top = item.getBoundingClientRect().top;
+        const windowHeight = window.innerHeight;
+
+        if (top < windowHeight - 80) {
+          item.classList.add("show");
+        }
+      });
+    }
+
+    window.addEventListener("scroll", revealOnScroll);
+    window.addEventListener("load", revealOnScroll);
+  </script>
+
+</body>
+</html>
